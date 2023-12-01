@@ -1,7 +1,7 @@
 # TypeText-Generator Legacy
 A dialogue generator for Project Arrhythmia. Legacy specific version.
 
-# Go to https://thevoidunknown.github.io/Typetext-Generator-Legacy/ to use the UI
+# Go to https://thevoidunknown.github.io/TypeText-Generator-Legacy/ to use the UI
 
 **You don't have to download this script to use it, you can just click on `typetext_generator.js` and copy the code to your clipboard.**
 
