@@ -1,5 +1,5 @@
 # TypeText-Generator Legacy
-A dialogue generator for Project Arrhythmia. Legacy specific version.
+A dialogue generator for Project Arrhythmia. Legacy specific version. This version will __NOT__ receive feature updates.
 
 # Go to https://thevoidunknown.github.io/TypeText-Generator-Legacy/ to use the UI
 
