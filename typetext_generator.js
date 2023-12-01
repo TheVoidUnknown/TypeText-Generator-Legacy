@@ -1,4 +1,4 @@
-// TypeText generator v1.41 by VoidUnknown
+// TypeText generator v1.41 LEGACY by VoidUnknown
 // Please report bugs to @thevoidunknown via discord
 /* 
 
@@ -224,52 +224,52 @@ function makeObject(pid,char,pos,color,depth,startPos,offset,letterfont,line) { 
   
   return {
     "id":id,
-    "p_id":pid,
-    "ak_t":2,
-    "ak_o":params.lifetime,
+    "p":pid,
+    "akt":2,
+    "ako":params.lifetime,
     "ot":2,
     "n":`Text ${char}`,
-    "text":`${appliedTags}<font=${letterfont}>${char}`,
-    "o":{"x":-0.5,"y":0.0},
-    "s":4,
-    "ed":{
-      "b":params.obj_bin,
-      "co":true,
-      "l":5
-    },
-    "e":[
-      {"k":[...startKeyframes["move"],...keyframes["move"]]},
-      {"k":[...startKeyframes["scale"],...keyframes["scale"]]},
-      {"k":[...startKeyframes["rotation"],...keyframes["rotation"]]},
-      {"k":[...startKeyframes["color"],...keyframes["color"]]}
-    ],
-    "p_t":"111",
-    "p_o": [offset, offset, offset],
+    "text":`${appliedTags}${char}`,
+    "o":{"x":"-0.5","y":"0.0"},
+    "shape":4,
     "d":depth,
-    "st":startPos
+    "st":startPos,
+    "pt":"111",
+    "ed":{
+      "bin":params.obj_bin,
+      "shrink":"True",
+      "layer":5
+    },
+    "events":{
+      "pos":[...startKeyframes["move"],...keyframes["move"]],
+      "sca":[...startKeyframes["scale"],...keyframes["scale"]],
+      "rot":[...startKeyframes["rotation"],...keyframes["rotation"]],
+      "col":[...startKeyframes["color"],...keyframes["color"]]
+    }
+    //"p_o": [offset, offset, offset],
   }
 }
 
 
 
 function makeDoubleStartKeyframe(x,y,ease) { // Return keyframe with two values and no start time
-  return {"ct":ease,"ev":[x,y]}
+  return {"t":0,"x":x,"y":y}
 }
 
 function makeDoubleKeyframe(time,x,y,ease) { // Return keyframe with two values
-  return {"ct":ease,"t":time,"ev":[x,y]}
+  return {"t":time,"ct":ease,"x":x,"y":y}
 }
 
 function makeSingleStartKeyframe(x,ease) { // Return keyframe with a single value and no start time
-  return {"ct":ease,"ev":[x]}
+  return {"t":0,"x":x}
 }
 
 function makeSingleKeyframe(time,x,ease) { // Return keyframe with a single value 
-  return {"ct":ease,"t":time,"ev":[x]}
+  return {"t":time,"ct":ease,"x":x}
 }
 
 function makeRandomKeyframe(time,x,y,x2,y2,type,ease) {
-  return {"ct":ease,"t":time,"r":type,"ev":[x,y],"er":[x2,y2]}
+  return {"t":time,"ct":ease,"x":x,"y":y, "r":type,"rx":x2,"rz":y2}
 }
 
 function makeCursor(pid,pos,color,depth,startPos,cursorChar) { // Define function to generate "cursor"
@@ -333,28 +333,30 @@ function makeUnderline(pid,spawnTime,length,spawnPosition,line,endTime,thickness
   keyframes["color"].push(makeSingleKeyframe(`${endTime}`,params.obj_color,"OutSine"))
 
   id = shuffle(pid.split("")).join("")
+
   return {
     "id":id,
-    "p_id":parent_id,
-    "ak_t":2,
-    "ak_o":params.lifetime,
+    "p":parent_id,
+    "akt":2,
+    "ako":params.lifetime,
     "ot":2,
-    "n":"Text Underline",
-    "o":{"x":0.5,"y":0.0},
-    "ed":{
-      "b":params.obj_bin+2,
-      "co":true,
-      "l":5
-    },
-    "e":[
-      {"k":[...startKeyframes["move"],...keyframes["move"]]},
-      {"k":[...startKeyframes["scale"],...keyframes["scale"]]},
-      {"k":[...startKeyframes["rotation"],...keyframes["rotation"]]},
-      {"k":[...startKeyframes["color"],...keyframes["color"]]}
-    ],
-    "p_t":"111",
+    "n":`Text Underline`,
+    "o":{"x":"-0.5","y":"0.0"},
     "d":params.obj_depth,
-    "st":spawnTime
+    "st":spawnTime,
+    "pt":"111",
+    "ed":{
+      "bin":params.obj_bin+1,
+      "shrink":"True",
+      "layer":5
+    },
+    "events":{
+      "pos":[...startKeyframes["move"],...keyframes["move"]],
+      "sca":[...startKeyframes["scale"],...keyframes["scale"]],
+      "rot":[...startKeyframes["rotation"],...keyframes["rotation"]],
+      "col":[...startKeyframes["color"],...keyframes["color"]]
+    }
+    //"p_o": [offset, offset, offset],
   }
 }
 
@@ -375,27 +377,30 @@ function makeStrikethrough(pid,spawnTime,length,spawnPosition,line,endTime,thick
   keyframes["color"].push(makeSingleKeyframe(`${endTime}`,params.obj_color,"OutSine"))
 
   id = shuffle(pid.split("")).join("")
+
   return {
     "id":id,
-    "p_id":parent_id,
-    "ak_t":2,
-    "ak_o":params.lifetime,
-    "ot":2,"n":"Text Strikethrough",
-    "o":{"x":0.5,"y":0.0},
-    "ed":{
-      "b":params.obj_bin+2,
-      "co":true,
-      "l":5
-    },
-    "e":[
-      {"k":[...startKeyframes["move"],...keyframes["move"]]},
-      {"k":[...startKeyframes["scale"],...keyframes["scale"]]},
-      {"k":[...startKeyframes["rotation"],...keyframes["rotation"]]},
-      {"k":[...startKeyframes["color"],...keyframes["color"]]}
-    ],
-    "p_t":"111",
+    "p":parent_id,
+    "akt":2,
+    "ako":params.lifetime,
+    "ot":2,
+    "n":`Text Strikethrough`,
+    "o":{"x":"-0.5","y":"0.0"},
     "d":params.obj_depth,
-    "st":spawnTime
+    "st":spawnTime,
+    "pt":"111",
+    "ed":{
+      "bin":params.obj_bin+1,
+      "shrink":"True",
+      "layer":5
+    },
+    "events":{
+      "pos":[...startKeyframes["move"],...keyframes["move"]],
+      "sca":[...startKeyframes["scale"],...keyframes["scale"]],
+      "rot":[...startKeyframes["rotation"],...keyframes["rotation"]],
+      "col":[...startKeyframes["color"],...keyframes["color"]]
+    }
+    //"p_o": [offset, offset, offset],
   }
 }
 
@@ -536,15 +541,12 @@ for (i=0; i<params.text.length; i++) { // For 0 to n letters
 
 }
 
-// Shameless promotion, feel free to customize. Tip: image MUST be in JSON format! Not doing so will make the prefab invalid and prevent prefabs tab from opening!
-let preview = "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"
-
 prefab = {
-  "n":params.prefabName,
-  "type":11,
-  "preview":preview,
-  "o":0.0,
-  "objs":[]
+  "name": params.prefabName,
+  "type": "7",
+  "id": shuffle("#▆¾hR:W:✿p<<%n¾@".split("")).join(""),
+  "offset": "0",
+  "objects": []
 }
 
 if (params.cursor != ""){objects.push(makeCursor(parent_id,0,params.obj_color,params.obj_depth,0,params.cursor))}
@@ -552,21 +554,21 @@ if (params.cursor != ""){objects.push(makeCursor(parent_id,0,params.obj_color,pa
 // Spit out the prefab
 objects.unshift({
   "id":parent_id,
-  "ak_t":2,
-  "ak_o":1.0,
+  "akt":2,
+  "ako":1.0,
   "ot":3,
   "n":"Text Parent",
-  "ed":{"l":5},
-  "e":[
-    {"k":[{"ct":"Linear","ev":[0.0,0.0]}]},
-    {"k":[{"ct":"Linear","ev":[1.0,1.0]}]},
-    {"k":[{"ct":"Linear","ev":[0.0]}]},
-    {"k":[{"ct":"Linear","ev":[0.0]}]}
-  ],
-  "p_t":"101",
+  "ed":{"layer":5},
+  "events":{
+    "pos":[{"t":0,"x":0,"y":0}],
+    "sca":[{"t":0,"x":1,"y":1}],
+    "rot":[{"t":0,"x":0}],
+    "col":[{"t":0,"x":0}]
+  },
+  "pt":"101",
   "d":20
   })
-prefab.objs = (objects)
+prefab.objects = (objects)
 return JSON.stringify(prefab)
 }
 
