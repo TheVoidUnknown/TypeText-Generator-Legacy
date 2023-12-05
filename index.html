@@ -193,6 +193,9 @@ else {document.getElementById('prefab-text').classList.add("error");document.get
 if (!document.getElementById('time').value == "") {params.letter_delay = parseFloat(document.getElementById('time').value)}
 else {document.getElementById('time').classList.add("error");document.getElementById("output").value = "Error: You need a time delay!";return;}
 
+if (!document.getElementById('lifetime').value == "") {params.lifetime = parseFloat(document.getElementById('lifetime').value)}
+else {document.getElementById('time').classList.add("error");document.getElementById("output").value = "Error: You need object life time!";return;}
+
 if (!document.getElementById('ease-delay').value == "") {params.easeTime = parseFloat(document.getElementById('ease-delay').value)}
 else {document.getElementById('ease-delay').classList.add("error");document.getElementById("output").value = "Error: You need an ease delay!";return;}
 
